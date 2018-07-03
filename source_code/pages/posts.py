@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from ._postable import Postable
+from base_models.models import Postable
 
 class Post(Postable):
 

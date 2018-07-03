@@ -3,21 +3,26 @@ version: '3'
 services:
   db:
     image: 'mysql:5.7'
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     expose:
       - '3306'
     ports:
       - "3306:3306"
     environment: 
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: ticokene20
-      MYSQL_PASSWORD: ticoeken20
-      MYSQL_DATABASE: db_django
-    
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=ticokene20
+      - MYSQL_PASSWORD=ticoeken20
+      - MYSQL_DATABASE=db_django
+  redis:
+    image: 'redis:4'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - '6379:6379'
+
   web:
     build: .
-    
     command: python3 manage.py runserver 0.0.0.0:8000
-    
     volumes:
       - .:/code
     ports:
