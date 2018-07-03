@@ -1,0 +1,19 @@
+{% extends templates/_base.html %}
+
+{% block content %}{% endblock content %}
+
+{% block script %}
+
+	<script type="text/javascript">
+		var socket = new WebSocket('ws://' + window.localhost.host + '/users/');
+
+		socket.onopen = function open() {
+			console.log("WebSocket connection created");
+		}
+
+		if (socket.readyState == WebSocket.OPEN){
+			socket.onopen();
+		}
+	</script>
+
+{% endblock script %}
