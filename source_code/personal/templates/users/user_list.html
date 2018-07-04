@@ -1,11 +1,12 @@
-{% extends templates/_base.html %}
+{% extends "../base.html" %}
 
 {% block content %}{% endblock content %}
 
 {% block script %}
 
 	<script type="text/javascript">
-		var socket = new WebSocket('ws://' + window.localhost.host + '/users/');
+		console.log(window.location.host)
+		var socket = new WebSocket('ws://' + window.location.host + '/users/');
 
 		socket.onopen = function open() {
 			console.log("WebSocket connection created");

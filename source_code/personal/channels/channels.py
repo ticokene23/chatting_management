@@ -1,9 +1,15 @@
-from channels import Group
+from channels.generic.websocket import AsyncWebsocketConsumer
+import json
+import logging
 
-def ws_connect(message):
-    Group('users').add(message.reply_channel)
+class UserLoginTracker(AsyncWebsocketConsumer):
+	async def connect(self):
+		logging.warning("connect")
+		await self.accept()
 
-def ws_disconnect(message):
-    Group('users').discard(message.reply_channel)  
+	async def disconnect(self, message):
+		logging.warning("disconnect")
 
- 
+	async def receive(self, text_data):
+		logging.warning(text_data)
+	 

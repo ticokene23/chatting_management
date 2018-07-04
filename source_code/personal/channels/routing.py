@@ -1,7 +1,7 @@
-from channels.routing import route
-from .channels import ws_connect, ws_disconnect
+from .channels import UserLoginTracker
+from django.urls import path, include
 
-channel_routing = [
-    route('websocket.connect', ws_connect),
-    route('websocket.disconnect', ws_disconnect),
+
+websocket_urlpatterns = [
+	path('users/', UserLoginTracker),
 ]

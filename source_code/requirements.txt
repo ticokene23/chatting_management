@@ -1,8 +1,9 @@
-Django==1.11
+Django==2.0.6
 psycopg2
 djangorestframework
 markdown
 django-filter
 mysqlclient
-channels==1.0.2 
-asgi_redis==1.0.0
+asgiref==2.3
+channels==2.1.2
+channels_redis==2.2.1
