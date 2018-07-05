@@ -1,5 +1,5 @@
 """
-WSGI config for page project.
+WSGI config for apps project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -9,8 +9,8 @@ https://docs.djangoproject.com/en/2.0/howto/deployment/wsgi/
 
 import os
 
-from django.core.wsgi import get_wsgi_application
+from django.core.wsgi import get_wsgi_application, get_channel_layer
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "page.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "apps.settings")
 
 application = get_wsgi_application()
