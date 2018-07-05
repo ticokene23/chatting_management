@@ -12,9 +12,15 @@
 			console.log("WebSocket connection created");
 		}
 
+		socket.onmessage = function (event) {
+			console.log(event.data)
+		}
+
 		if (socket.readyState == WebSocket.OPEN){
 			socket.onopen();
 		}
+
+
 	</script>
 
 {% endblock script %}
