@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 import logging
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -40,11 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'personal.apps.PersonalConfig',
     'chat.apps.ChatConfig',
+    'dashboard.apps.DashboardConfig',
     'channels',
     # 'pages.apps.PagesConfig'
 ]
-
-logging.warning(os.environ.get('REDIS_URL', 'redis://localhost:6379'))
 
 ASGI_APPLICATION = "apps.routing.application"
 CHANNEL_LAYERS = {
@@ -68,10 +68,15 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'apps.urls'
 
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [
+            '/code/dashboard/templates',
+
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -139,3 +144,53 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'mail_admins': {
+            'level': 'DEBUG',
+            'class': 'django.utils.log.AdminEmailHandler',
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'propagate': True,
+            'level': 'INFO',
+        },
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        'chat': {
+            'handlers': ['console', 'mail_admins'],
+            'level': 'DEBUG',
+        },
+        'personal': {
+            'handlers': ['console', 'mail_admins'],
+            'level': 'DEBUG',  
+        }
+    }
+}
