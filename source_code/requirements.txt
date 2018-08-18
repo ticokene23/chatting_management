@@ -7,5 +7,6 @@ mysqlclient
 asgiref==2.3
 channels==2.1.2
 channels_redis==2.2.1
+djangorestframework-jwt
 
 

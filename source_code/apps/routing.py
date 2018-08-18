@@ -5,7 +5,6 @@ import chat.channels.routing as chat
 import itertools
 import logging
 
-logging.warning("ROUTING!!!!!!!!!!!!!!!!!!")
 # logging.warning(personal.channels.routing.websocket_urlpatterns)
 routers = personal.websocket_urlpatterns + chat.websocket_urlpatterns
 application = ProtocolTypeRouter({

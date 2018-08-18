@@ -25,11 +25,9 @@ services:
   web:
     build: .
     command: python3 manage.py runserver 0.0.0.0:8000
-
     environment:
       REDIS_URL: redis://redis:6379
-    # links:
-    #   - selenium
+
     volumes:
       - .:/code
     ports:

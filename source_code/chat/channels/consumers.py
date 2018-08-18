@@ -6,23 +6,16 @@ from chat.models import Room
 class ChatConsumer(AsyncWebsocketConsumer):
 	"""docstring for ChatConsumer"""
 	async def connect(self):
-		logging.warning("connect")
-		logging.warning(self.channel_name)
-		try:
-			self.room_name = self.scope['url_route']['kwargs']['room_name']
-			room = await self._get_or_create_room(self.room_name)
-			logging.warning(room)
-			self.room_group_name = 'chat_%s' % self.room_name
-			
-			await self.channel_layer.group_add(
-						self.room_group_name,
-						self.channel_name
-					)
+		self.room_name = self.scope['url_route']['kwargs']['room_name']
+		room = await self._get_or_create_room(self.room_name)
+		self.room_group_name = 'chat_%s' % self.room_name
+		
+		await self.channel_layer.group_add(
+					self.room_group_name,
+					self.channel_name
+				)
 
-			await self.accept()
-
-		except Exception as e:
-			raise e
+		await self.accept()
 		
     # Leave room group
 	async def disconnect(self, close_code):
