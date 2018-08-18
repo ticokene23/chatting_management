@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['localhost','0.0.0.0']
 # Application definition
 
 INSTALLED_APPS = [
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,7 +42,6 @@ INSTALLED_APPS = [
     'personal.apps.PersonalConfig',
     'chat.apps.ChatConfig',
     'dashboard.apps.DashboardConfig',
-    'rest_framework',
     'channels',
     # 'pages.apps.PagesConfig'
 ]

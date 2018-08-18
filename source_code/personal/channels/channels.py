@@ -18,3 +18,6 @@ class UserLoginTracker(WebsocketConsumer):
 		# self.scope["session"].save()
 		async_to_sync(login)(self.scope, user)
 		self.scope["session"].save()
+		logging.warning("receive")
+		logging.warning(text_data)
+        

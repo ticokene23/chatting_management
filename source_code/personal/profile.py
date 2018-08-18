@@ -11,5 +11,5 @@ class Profile(TimeStampedModel):
 
 	@cached_property
 	def full_name(self):
-		return "%s %s" % (self.user.last_name ,self.user.first_name)
+		return "%s %s" % (self.user.last_name ,self.user.first_name) 
 
